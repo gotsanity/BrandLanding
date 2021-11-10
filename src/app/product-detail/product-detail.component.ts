@@ -16,29 +16,11 @@ export class ProductDetailComponent implements OnInit {
 
   selectedIndex = null;
 
-  // data: any[] = [
-  //   {
-  //     name: "Coke",
-  //     image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-  //     text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-  //   },
-  //   {
-  //     name: "Coke Zero",
-  //     image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-  //     text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-  //   },
-  //   {
-  //     name: "Cherry Coke",
-  //     image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-  //     text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-  //   }
-  // ];
-
   constructor(private router: ActivatedRoute, private products: ProductService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.item = this.products.getProductByIndex(params.index);
+      this.item = this.products.getProductByName(params.name);
     });
     
   }

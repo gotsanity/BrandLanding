@@ -1,3 +1,4 @@
+import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,27 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  data: any[] = [
-    {
-      name: "Coke",
-      image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-    },
-    {
-      name: "Coke Zero",
-      image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-    },
-    {
-      name: "Cherry Coke",
-      image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg",
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
-    }
-  ];
+  data: any[] = [];
 
-  constructor() { }
+  constructor(private products: ProductService) { }
 
   ngOnInit() {
+    this.data = this.products.getAll();
+  }
+
+  addNewItem() {
+    this.products.addData({ name: "sprite", image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg", text: "some random text" });
   }
 
 }

@@ -2,4 +2,6 @@
   <img [src]="data.image">
   <h5>{{ data.name }}</h5>
   <p>{{ data.text }}</p>
+  <!-- <button (click)="goToProduct()">See More</button> -->
+  <a [routerLink]="['/products', data.name]">Go to {{ data.name }} details</a>
 </div>
