@@ -10,10 +10,21 @@ export class LandingComponent implements OnInit {
 
   data: any[] = [];
 
+  posts: any[] = [];
+
   constructor(private products: ProductService) { }
 
   ngOnInit() {
     this.data = this.products.getAll();
+
+    this.products.getAllPosts().subscribe(data => {
+      console.log(data);
+      this.posts = data;
+    });
+
+    this.products.getPostById(4).subscribe(data => {
+      console.log('subscribed to id 4: ', data);
+    });
   }
 
   addNewItem() {

@@ -1,9 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { Observable, throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  private webUrl = "https://jsonplaceholder.typicode.com";
 
   private data: any[] = [
     {
@@ -28,9 +34,7 @@ export class ProductService {
     }
   ];
 
-  constructor() {
-    console.log('created');
-  }
+  constructor(private http: HttpClient) { }
 
   getProductByIndex(index: number): any {
     // error catching (out of bounds) needs implemented
@@ -52,6 +56,18 @@ export class ProductService {
 
   addData(item: any) {
     this.data.push(item);
+  }
+
+  // private webUrl = "https://jsonplaceholder.typicode.com";
+
+  // creating an observable
+  getAllPosts(): Observable<any[]> {
+    console.log("get all posts fired");
+    return this.http.get<any[]>(`${this.webUrl}/posts`);
+  }
+
+  getPostById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.webUrl}/posts/${id}`);
   }
 
 }
