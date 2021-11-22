@@ -67,8 +67,6 @@ export class ProductService {
     this.data.push(item);
   }
 
-  // private webUrl = "https://jsonplaceholder.typicode.com";
-
   // read all
   getAllPosts(): Observable<any[]> {
     console.log("get all posts fired");
@@ -77,15 +75,13 @@ export class ProductService {
 
   getTopPosts(num: number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.webUrl}/posts`).pipe(
-      tap(item => {
-        console.log("tapped item", item);
-      }),
       map((data: Post[]) => {
         data.forEach(item => {
-          item.image = "toast";
+          item.image = "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg";
         });
         return data;
-      })
+      }),
+      map(data => data.slice(0, num))
     );
   }
 
@@ -95,6 +91,11 @@ export class ProductService {
   }
 
   // create
+
+  createPost(body: Post): Observable<Post> {
+    return this.http.post<Post>(`${this.webUrl}/posts`, body);
+  }
+
   // update
   // delete
 }

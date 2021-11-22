@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.data = this.products.getAll();
 
-    this.products.getTopPosts(50).subscribe(data => {
+    this.products.getTopPosts(3).subscribe(data => {
       console.log("inside landing component", data);
       this.posts = data;
     });
@@ -28,7 +28,21 @@ export class LandingComponent implements OnInit {
   }
 
   addNewItem() {
-    this.products.addData({ name: "sprite", image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg", text: "some random text" });
+    let newPost: Post = {
+      id: 99,
+      title: 'foo',
+      body: 'bar',
+      userId: 1,
+      image: "toast"
+    };
+    
+    console.log("new post item", newPost);
+
+    this.products.createPost(newPost).subscribe(data => {
+      console.log("value returned", data);
+    });
+
+    
   }
 
 }
