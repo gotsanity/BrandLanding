@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from './../product.service';
+import { Post, ProductService } from './../product.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,10 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  data = {
-    name: "",
-    image: "",
-    text: ""
+  @Input() data: Post = {
+    body: "",
+    id: 0,
+    title: "",
+    userId: 0,
+    image: "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
   };
 
   @Input() name: string = "";
@@ -26,13 +28,10 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.name != "") {
-      this.data = this.products.getProductByName(this.name);
-    }
   }
 
   goToProduct() {
-    this.router.navigateByUrl(`/products/${this.data.name}`);
+    this.router.navigateByUrl(`/products/${this.data.id}`);
   }
 
 }

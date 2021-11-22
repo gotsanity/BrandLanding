@@ -8,10 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  @Input() item = {
-    name: "",
-    image: "",
-    text: ""
+  @Input() data = {
+    body: "",
+    id: 0,
+    title: "",
+    userId: 0
   }
 
   selectedIndex = null;
@@ -20,7 +21,9 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.item = this.products.getProductByName(params.name);
+      this.products.getPostById(params['id']).subscribe(data => {
+        this.data = data;
+      });
     });
     
   }

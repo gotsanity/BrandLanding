@@ -1,6 +1,6 @@
 <div class="landing">
   <div class="featured">
-    <app-product *ngFor="let item of data" [name]="item.name"></app-product>
+    <app-product *ngFor="let item of posts" [data]="item"></app-product>
   </div>
 
   <button (click)="addNewItem()">Add a new item</button>

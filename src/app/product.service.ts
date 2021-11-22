@@ -1,8 +1,17 @@
 import { HttpClient } from '@angular/common/http';
+import { isNgTemplate } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
 import { Observable, throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
+
+export interface Post {
+  title: string,
+  body: string,
+  id: number,
+  userId: number,
+  image: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -60,14 +69,32 @@ export class ProductService {
 
   // private webUrl = "https://jsonplaceholder.typicode.com";
 
-  // creating an observable
+  // read all
   getAllPosts(): Observable<any[]> {
     console.log("get all posts fired");
     return this.http.get<any[]>(`${this.webUrl}/posts`);
   }
 
+  getTopPosts(num: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.webUrl}/posts`).pipe(
+      tap(item => {
+        console.log("tapped item", item);
+      }),
+      map((data: Post[]) => {
+        data.forEach(item => {
+          item.image = "toast";
+        });
+        return data;
+      })
+    );
+  }
+
+  // read one
   getPostById(id: number): Observable<any> {
     return this.http.get<any>(`${this.webUrl}/posts/${id}`);
   }
 
+  // create
+  // update
+  // delete
 }

@@ -1,4 +1,4 @@
-import { ProductService } from './../product.service';
+import { Post, ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,15 +10,15 @@ export class LandingComponent implements OnInit {
 
   data: any[] = [];
 
-  posts: any[] = [];
+  posts: Post[] = [];
 
   constructor(private products: ProductService) { }
 
   ngOnInit() {
     this.data = this.products.getAll();
 
-    this.products.getAllPosts().subscribe(data => {
-      console.log(data);
+    this.products.getTopPosts(50).subscribe(data => {
+      console.log("inside landing component", data);
       this.posts = data;
     });
 
