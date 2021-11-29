@@ -1,5 +1,7 @@
-    <label for="title">Title</label><br>
-    <input type="text" name="title"><br>
-    <label for="body">Body</label><br>
-    <input type="text" name="body"><br>
-    <button type="submit" (click)="onSubmit()">Submit</button>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <label>Title</label><br>
+    <input type="text" id="title" formControlName="title"><br>
+    <label>Body</label><br>
+    <input type="text" id="body" formControlName="body"><br>
+    <input type="submit">
+</form>

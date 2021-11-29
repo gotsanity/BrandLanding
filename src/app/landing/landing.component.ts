@@ -12,7 +12,9 @@ export class LandingComponent implements OnInit {
 
   posts: Post[] = [];
 
-  constructor(private products: ProductService) { }
+  constructor(private products: ProductService) {
+    this.products.nonObservableServiceCall();
+  }
 
   ngOnInit() {
     this.data = this.products.getAll();

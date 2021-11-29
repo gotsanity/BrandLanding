@@ -73,6 +73,13 @@ export class ProductService {
     return this.http.get<any[]>(`${this.webUrl}/post`);
   }
 
+  nonObservableServiceCall(): void {
+    console.log("I fired a non observable call");
+    this.http.get<any[]>(`${this.webUrl}/post`).subscribe(data => {
+      console.log("I fired an observable call", data);
+    });
+  }
+
   getTopPosts(num: number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.webUrl}/post`).pipe(
       map((data: Post[]) => {

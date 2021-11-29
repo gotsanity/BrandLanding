@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [					
@@ -24,7 +25,8 @@ import { PostCreateComponent } from './post-create/post-create.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
