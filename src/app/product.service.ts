@@ -18,7 +18,7 @@ export interface Post {
 })
 export class ProductService {
 
-  private webUrl = "https://jsonplaceholder.typicode.com";
+  private webUrl = "http://73.19.65.35:3500/api";
 
   private data: any[] = [
     {
@@ -70,11 +70,11 @@ export class ProductService {
   // read all
   getAllPosts(): Observable<any[]> {
     console.log("get all posts fired");
-    return this.http.get<any[]>(`${this.webUrl}/posts`);
+    return this.http.get<any[]>(`${this.webUrl}/post`);
   }
 
   getTopPosts(num: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.webUrl}/posts`).pipe(
+    return this.http.get<Post[]>(`${this.webUrl}/post`).pipe(
       map((data: Post[]) => {
         data.forEach(item => {
           item.image = "https://civilrights.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg";
@@ -87,15 +87,22 @@ export class ProductService {
 
   // read one
   getPostById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.webUrl}/posts/${id}`);
+    return this.http.get<any>(`${this.webUrl}/post/${id}`);
   }
 
   // create
 
   createPost(body: Post): Observable<Post> {
-    return this.http.post<Post>(`${this.webUrl}/posts`, body);
+    return this.http.post<Post>(`${this.webUrl}/post`, body);
   }
 
   // update
+  patchPost(body: Post): Observable<Post> {
+    return this.http.patch<Post>(`${this.webUrl}/post`, body);
+  }
+
   // delete
+  deletePost(name: string): Observable<Post> {
+    return this.http.delete<Post>(`${this.webUrl}/post/${name}`);
+  }
 }

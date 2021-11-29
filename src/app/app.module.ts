@@ -10,14 +10,16 @@ import { ProductComponent } from './product/product.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PostCreateComponent } from './post-create/post-create.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       NavbarComponent,
       ProductComponent,
       LandingComponent,
-      ProductDetailComponent
+      ProductDetailComponent,
+      PostCreateComponent
    ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.data = this.products.getAll();
 
-    this.products.getTopPosts(3).subscribe(data => {
+    this.products.getTopPosts(4).subscribe(data => {
       console.log("inside landing component", data);
       this.posts = data;
     });
